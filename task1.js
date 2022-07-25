@@ -2,7 +2,10 @@
 // с ошибкой new Error("timeout")
 // если promise не выполняется за timeout
 function timeoutedPromise(promise, timeout) {
-  return promise;
+  let promise1 = new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error('timeout')), timeout);
+    promise.then((v) => resolve(v));
+  });
 }
 
 //реализовать значение с задержкой
